@@ -1,6 +1,6 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 
-// --- الخطوات الأساسية (اللي عندك أصلاً) ---
+
 
 Given("the user navigates to the login page", () => {
     cy.visit("/");
@@ -22,7 +22,7 @@ Then("the user should be redirected to the inventory page", () => {
     cy.url().should("include", "/inventory.html");
 });
 
-// --- حل المشكلة الثالثة: Add product to cart and checkout ---
+
 
 When('the user logs in with {string} and {string}', (username, password) => {
     cy.get('[data-test="username"]').type(username);
@@ -31,7 +31,7 @@ When('the user logs in with {string} and {string}', (username, password) => {
 });
 
 When('the user adds {string} to the cart', (productName) => {
-    // بنختار أول منتج يقابلنا "Backpack" ونضغط Add to cart
+
     cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
 });
 
@@ -44,10 +44,10 @@ Then('the user should see the checkout information page', () => {
     cy.url().should('include', '/checkout-step-one.html');
 });
 
-// --- حل المشكلة الرابعة: Logout flow ---
+
 
 When('the user clicks on the logout button', () => {
-    // في موقع SauceDemo لازم تفتح المنيو أول عشان يظهر زر الـ Logout
+
     cy.get('#react-burger-menu-btn').click();
     cy.get('#logout_sidebar_link').click();
 });
