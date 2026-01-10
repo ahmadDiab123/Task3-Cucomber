@@ -15,13 +15,15 @@ Feature: SauceDemo Automation Tests
       | standard_user           | secret_sauce  |
       | problem_user            | secret_sauce  |
 
-  @checkout
-  Scenario: Add product to cart and checkout
+ @checkout
+  Scenario: Add product to cart and complete checkout
     When the user logs in with "standard_user" and "secret_sauce"
     And the user adds "Sauce Labs Backpack" to the cart
     And the user starts the checkout process
-    Then the user should see the checkout information page
-
+    And the user fills the checkout information
+    And the user finishes the order
+    Then the user should see the order completion message
+    
   @logout
   Scenario: Validate Logout
     When the user logs in with "standard_user" and "secret_sauce"

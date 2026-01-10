@@ -45,6 +45,24 @@ Then('the user should see the checkout information page', () => {
 });
 
 
+When('the user fills the checkout information', () => {
+    cy.get('[data-test="firstName"]').type("ahmad");
+    cy.get('[data-test="lastName"]').type("diab");
+    cy.get('[data-test="postalCode"]').type("12345");
+    cy.get('[data-test="continue"]').click();
+});
+
+
+When('the user finishes the order', () => {
+    cy.get('[data-test="finish"]').click();
+});
+
+
+Then('the user should see the order completion message', () => {
+    cy.get('.complete-header').should('contain', 'Thank you for your order!');
+    cy.url().should('include', '/checkout-complete.html');
+});
+
 
 When('the user clicks on the logout button', () => {
 
